@@ -1,0 +1,59 @@
+public class RotateArrayByK {
+
+    // Function to reverse a part of the array
+    public static void reverse(int[] arr, int start, int end) {
+
+        // Run loop until start crosses end
+        while (start < end) {
+
+            // Store left value temporarily
+            int temp = arr[start];
+
+            // Move right value to left position
+            arr[start] = arr[end];
+
+            // Put stored value at right position
+            arr[end] = temp;
+
+            // Move pointers towards center
+            start++;
+            end--;
+        }
+    }
+
+    // Function to rotate array left by k positions
+    public static void rotateLeft(int[] arr, int k) {
+
+        // Get size of array
+        int n = arr.length;
+
+        // Handle case when k is greater than array size
+        k = k % n;
+
+        // Step 1: Reverse first k elements
+        reverse(arr, 0, k - 1);
+
+        // Step 2: Reverse remaining elements
+        reverse(arr, k, n - 1);
+
+        // Step 3: Reverse entire array
+        reverse(arr, 0, n - 1);
+    }
+
+    public static void main(String[] args) {
+
+        // Input array
+        int[] arr = {1, 2, 3, 4, 5};
+
+        // Number of rotations
+        int k = 2;
+
+        // Call rotation function
+        rotateLeft(arr, k);
+
+        // Print final array
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
