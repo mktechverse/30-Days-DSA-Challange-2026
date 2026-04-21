@@ -1,0 +1,46 @@
+import java.util.HashMap;
+
+public class TwoSum {
+
+    // Function to find indices of two numbers whose sum = target
+    public static int[] twoSum(int[] nums, int target) {
+
+        // Create a HashMap to store number and its index
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // Loop through the array
+        for (int i = 0; i < nums.length; i++) {
+
+            // Find the number we need to reach target
+            int complement = target - nums[i];
+
+            // Check if that number already exists in map
+            if (map.containsKey(complement)) {
+
+                // If yes, return indices of complement and current number
+                return new int[] { map.get(complement), i };
+            }
+
+            // If not found, store current number with its index
+            map.put(nums[i], i);
+        }
+
+        // If no solution found (just safety, though problem guarantees one)
+        return new int[] {};
+    }
+
+    public static void main(String[] args) {
+
+        // Input array
+        int[] nums = { 2, 7, 11, 15 };
+
+        // Target value
+        int target = 9;
+
+        // Call function
+        int[] result = twoSum(nums, target);
+
+        // Print result
+        System.out.println(result[0] + " " + result[1]);
+    }
+}
