@@ -1,0 +1,44 @@
+public class BestTimeToBuySellStock {
+
+    // Function to calculate maximum profit
+    public static int maxProfit(int[] prices) {
+
+        // Step 1: Assume first price as minimum
+        int minPrice = prices[0];
+
+        // Step 2: Initially, profit is 0 (no transaction yet)
+        int maxProfit = 0;
+
+        // Step 3: Traverse the array from second day
+        for (int i = 1; i < prices.length; i++) {
+
+            // Step 4: Calculate profit if we sell today
+            int profit = prices[i] - minPrice;
+
+            // Step 5: Update maximum profit if current profit is higher
+            if (profit > maxProfit) {
+                maxProfit = profit;
+            }
+
+            // Step 6: Update minimum price if current price is lower
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            }
+        }
+
+        // Step 7: Return the best profit found
+        return maxProfit;
+    }
+
+    public static void main(String[] args) {
+
+        // Input array (stock prices)
+        int[] prices = {7, 1, 5, 3, 6, 4};
+
+        // Call function
+        int result = maxProfit(prices);
+
+        // Print result
+        System.out.println(result);
+    }
+}
