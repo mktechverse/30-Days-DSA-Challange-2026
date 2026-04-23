@@ -1,0 +1,35 @@
+public class Kadane {
+
+    // Function to find maximum subarray sum
+    public static int maxSubArray(int[] nums) {
+
+        // Step 1: Start with first element
+        int currentSum = nums[0];  // running sum
+        int maxSum = nums[0];      // best sum so far
+
+        // Step 2: Traverse array from second element
+        for (int i = 1; i < nums.length; i++) {
+
+            // Step 3: Decide → continue or start fresh
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+
+            // Step 4: Update maximum sum
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        // Step 5: Return final answer
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+
+        // Input array
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+        // Call function
+        int result = maxSubArray(nums);
+
+        // Print result
+        System.out.println(result);
+    }
+}
