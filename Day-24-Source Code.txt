@@ -1,0 +1,54 @@
+public class ProductExceptSelf {
+
+    public static int[] productExceptSelf(int[] nums) {
+
+        int n = nums.length;
+
+        // This will store final answer
+        int[] result = new int[n];
+
+        // -------------------------------
+        // STEP 1: LEFT PRODUCT
+        // -------------------------------
+
+        // First element has no left → so 1
+        result[0] = 1;
+
+        // Build left products
+        for (int i = 1; i < n; i++) {
+
+            // result[i-1] already has product till previous
+            // multiply with previous element
+            result[i] = result[i - 1] * nums[i - 1];
+        }
+
+        // -------------------------------
+        // STEP 2: RIGHT PRODUCT
+        // -------------------------------
+
+        int right = 1; // initially nothing on right
+
+        // Traverse from right to left
+        for (int i = n - 1; i >= 0; i--) {
+
+            // Multiply left product with right product
+            result[i] = result[i] * right;
+
+            // Update right for next iteration
+            right = right * nums[i];
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums = {2, 3, 4, 5};
+
+        int[] result = productExceptSelf(nums);
+
+        for (int val : result) {
+            System.out.print(val + " ");
+        }
+    }
+}
