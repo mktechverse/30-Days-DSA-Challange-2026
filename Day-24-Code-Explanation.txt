@@ -1,0 +1,63 @@
+🔹 public class ProductExceptSelf {
+
+This defines a class.
+In Java, all code must be inside a class.
+
+🔹 public static int[] productExceptSelf(int[] nums)
+
+This is the function:
+
+Takes an array nums as input
+Returns an array (int[]) as output
+🔹 int n = nums.length;
+
+Stores the size of the array in variable n.
+
+🔹 int[] result = new int[n];
+
+Creates a new array result of same size
+👉 This will store the final answer
+
+🔹 result[0] = 1;
+
+At index 0:
+
+There are no elements on the left
+So we assign 1 (neutral value for multiplication)
+🔹 for (int i = 1; i < n; i++)
+
+Loop starts from index 1 → moves left to right
+
+🔹 result[i] = result[i - 1] * nums[i - 1];
+
+This builds left product:
+
+result[i - 1] → product till previous index
+nums[i - 1] → previous element
+
+👉 Multiply both → gives product of all elements on left of i
+
+🔹 int right = 1;
+
+Variable to store right side product
+
+Initially 1 (nothing on right)
+🔹 for (int i = n - 1; i >= 0; i--)
+
+Loop from right to left
+
+🔹 result[i] = result[i] * right;
+result[i] already has left product
+right has right product
+
+👉 Multiply both → final answer for index i
+
+🔹 right = right * nums[i];
+
+Update right product:
+
+Multiply current element
+So next iteration gets updated right side product
+🔹 return result;
+
+Return the final result array
