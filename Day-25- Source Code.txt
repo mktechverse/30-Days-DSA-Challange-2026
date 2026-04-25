@@ -1,0 +1,45 @@
+public class ContainerWithMostWater {
+
+    public static int maxArea(int[] height) {
+
+        // Step 1: Two pointers at both ends
+        int left = 0;
+        int right = height.length - 1;
+
+        // Step 2: Store maximum area found
+        int maxArea = 0;
+
+        // Step 3: Loop until both pointers meet
+        while (left < right) {
+
+            // Step 4: Find height of container (smaller line)
+            int h = Math.min(height[left], height[right]);
+
+            // Step 5: Find width between two lines
+            int w = right - left;
+
+            // Step 6: Calculate current area
+            int area = h * w;
+
+            // Step 7: Update maximum area if needed
+            maxArea = Math.max(maxArea, area);
+
+            // Step 8: Move pointer of smaller height
+            if (height[left] < height[right]) {
+                left++; // move left pointer
+            } else {
+                right--; // move right pointer
+            }
+        }
+
+        // Step 9: Return final answer
+        return maxArea;
+    }
+
+    public static void main(String[] args) {
+
+        int[] height = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+
+        System.out.println(maxArea(height));
+    }
+}

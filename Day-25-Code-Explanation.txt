@@ -1,0 +1,98 @@
+public class ContainerWithMostWater {
+
+Defines the class.
+Java requires everything inside a class.
+
+🔹 public static int maxArea(int[] height)
+
+This function:
+
+Takes array height[]
+Returns maximum water area
+🔹 int left = 0;
+
+Left pointer starts from beginning of array.
+
+🔹 int right = height.length - 1;
+
+Right pointer starts from end of array.
+
+👉 So initially:
+
+Left = first line
+Right = last line
+
+👉 Maximum possible width
+
+🔹 int maxArea = 0;
+
+Stores the best (maximum) area found so far.
+
+🔹 while (left < right)
+
+Loop runs until both pointers meet.
+
+👉 We keep checking possible containers
+
+🔹 int h = Math.min(height[left], height[right]);
+
+Height of container = smaller line
+
+👉 Because water cannot exceed smaller height
+
+🔹 int w = right - left;
+
+Width = distance between pointers
+
+🔹 int area = h * w;
+
+Area = height × width
+
+👉 This is water stored between these two lines
+
+🔹 maxArea = Math.max(maxArea, area);
+
+Compare current area with best area so far
+
+👉 Update if current is bigger
+
+🔹 if (height[left] < height[right])
+
+Check which line is smaller
+
+🔹 left++;
+
+If left line is smaller:
+
+👉 Move left pointer right
+
+👉 Trying to find taller line
+
+🔹 else { right--; }
+
+If right line is smaller (or equal):
+
+👉 Move right pointer left
+
+👉 Trying to find taller line
+
+💣 MOST IMPORTANT LOGIC
+
+👉 Always move smaller height pointer
+
+👉 Why?
+
+Area depends on smaller height
+Bigger height doesn’t matter if smaller is limiting
+🧠 MAIN FUNCTION
+int[] height = {1,8,6,2,5,4,8,3,7};
+
+Input array
+
+System.out.println(maxArea(height));
+
+Calls function and prints result
+
+🏆 FINAL OUTPUT
+
+👉 49
