@@ -1,0 +1,73 @@
+public class ValidAnagram {   // Define a class (Java programs must be inside a class)
+
+    public static boolean isAnagram(String s, String t) {  
+        // Method to check if two strings s and t are anagrams
+        // Returns true if they are anagrams, else false
+
+        if (s.length() != t.length()) {  
+            // Step 1: If lengths are different, they cannot be anagrams
+            return false;  
+        }
+
+        int[] freq = new int[26];  
+        // Step 2: Create an array of size 26 for lowercase letters (a–z)
+        // Each index represents a character:
+        // index 0 -> 'a', 1 -> 'b', ..., 25 -> 'z'
+        // Initially all values are 0
+
+        for (int i = 0; i < s.length(); i++) {  
+            // Step 3: Loop through first string 's'
+
+            char c = s.charAt(i);  
+            // Get the character at index i
+
+            freq[c - 'a']++;  
+            // Convert character to index:
+            // 'a' -> 0, 'b' -> 1, etc.
+            // Increase count for this character
+            // (we are "adding" characters of s)
+        }
+
+        for (int i = 0; i < t.length(); i++) {  
+            // Step 4: Loop through second string 't'
+
+            char c = t.charAt(i);  
+            // Get the character at index i
+
+            freq[c - 'a']--;  
+            // Convert character to index
+            // Decrease count for this character
+            // (we are "removing" characters of t)
+        }
+
+        for (int i = 0; i < 26; i++) {  
+            // Step 5: Check all 26 positions in the frequency array
+
+            if (freq[i] != 0) {  
+                // If any value is not zero,
+                // it means mismatch exists (extra or missing character)
+                return false;  
+            }
+        }
+
+        return true;  
+        // Step 6: If all values are zero,
+        // it means both strings matched perfectly → anagram
+    }
+
+    public static void main(String[] args) {  
+        // Main method → starting point of program execution
+
+        String s = "listen";  
+        // First input string
+
+        String t = "silent";  
+        // Second input string
+
+        boolean result = isAnagram(s, t);  
+        // Call the function and store the result
+
+        System.out.println(result);  
+        // Print the result (true if anagram, false otherwise)
+    }
+}
