@@ -1,0 +1,45 @@
+import java.util.*; // Import required for Stack and Arrays
+
+public class NextGreaterElement { // Class definition
+
+    // Function to find next greater element for each index
+    public static int[] nextGreater(int[] arr) {
+
+        int n = arr.length; // Get size of array
+        int[] result = new int[n]; // Create result array
+
+        Stack<Integer> stack = new Stack<>();
+        // Stack to store elements (not indices)
+
+        // Traverse from right to left
+        for (int i = n - 1; i >= 0; i--) {
+
+            // Step 1: Remove all smaller or equal elements
+            while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+                stack.pop();
+            }
+
+            // Step 2: Assign result
+            if (stack.isEmpty()) {
+                result[i] = -1; // No greater element
+            } else {
+                result[i] = stack.peek(); // Top is next greater
+            }
+
+            // Step 3: Push current element into stack
+            stack.push(arr[i]);
+        }
+
+        return result; // Return final result array
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = { 4, 5, 2, 10, 8 }; // Input array
+
+        int[] ans = nextGreater(arr); // Function call
+
+        System.out.println(Arrays.toString(ans));
+        // Print result → [5, 10, 10, -1, -1]
+    }
+}
