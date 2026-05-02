@@ -1,0 +1,36 @@
+public class JumpGame {
+
+    // Function to check if we can reach last index
+    public static boolean canJump(int[] nums) {
+
+        int maxReach = 0;  
+        // stores the farthest index we can reach so far
+
+        // loop through all indices
+        for (int i = 0; i < nums.length; i++) {
+
+            // if current index is not reachable
+            if (i > maxReach) {
+                return false;  
+            }
+
+            // update the farthest reachable index
+            maxReach = Math.max(maxReach, i + nums[i]);
+        }
+
+        // if loop completes, we can reach the end
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        // input array
+        int[] nums = {2, 3, 1, 1, 4};
+
+        // call function
+        boolean result = canJump(nums);
+
+        // print result
+        System.out.println(result);
+    }
+}
